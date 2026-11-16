@@ -1,6 +1,6 @@
 ---
 name: claude-ai-team
-description: Run Claude Code as a team lead that hands work to AI coding CLIs you already log in to — Google Antigravity CLI (agy), OpenAI Codex CLI, GitHub Copilot CLI — and a local Ollama model, with no API keys, credits or pay-per-use billing. Claude splits the job, picks the right member (images, PDFs and long documents to agy; small code to codex or copilot; mechanical or confidential work to the local model), sends a self-contained task through one dispatcher (ai.cmd), then reviews the result and decides. E-mail addresses and your own secret words are blocked from leaving the PC, and a used-up quota makes the member rest instead of paying. Windows. Use when the user says to use the AI team or staff, delegate to Gemini, Codex, Copilot or Ollama, save Claude tokens, or split work among AI agents. 한국어 — AI 팀원(차장·사원·인턴) 부리기, 업무분장, 제미나이·코덱스·코파일럿·올라마에게 일 맡기기, 토큰 아끼기.
+description: Run Claude Code as a team lead that hands work to AI coding CLIs you already log in to — Google Antigravity CLI (agy), OpenAI Codex CLI, GitHub Copilot CLI — and a local Ollama model, with no API keys, credits or pay-per-use billing. Claude splits the job, picks the right member (images, PDFs and long documents to agy; small code to codex or copilot; mechanical or confidential work to the local model), sends a self-contained task through one dispatcher (ai.cmd), then reviews the result and decides. E-mail addresses and your own secret words are blocked from leaving the PC, and a used-up quota makes the member rest instead of paying. Windows. Use when the user says to use the AI team or staff, delegate to Gemini, Codex, Copilot or Ollama, save Claude tokens, split work among AI agents, or install or set up this skill. 한국어 — AI 팀원(차장·사원·인턴) 부리기, 업무분장, 제미나이·코덱스·코파일럿·올라마에게 일 맡기기, 토큰 아끼기.
 license: MIT
 compatibility: Windows 10/11 and Python 3.8+. Every member is optional — install and log in only the ones you use (agy with a Google account, codex with "Sign in with ChatGPT", copilot with a GitHub account, Ollama locally).
 metadata:
@@ -72,3 +72,10 @@ metadata:
 - **한도는 이 PC 의 모든 세션이 같이 쓴다.** 쉬는 중이면(`ai.cmd status`) §2-6 대로 넘긴다. 키·크레딧·재시도 루프로 한도를 늘리지 않는다
 - 같은 종류 일을 두 번 틀리면 그 팀원에게 다시 주지 않는다
 - 로그인이 풀리는 등 `ai.cmd` 가 못 돌면 사용자에게 알린다 — 로그인·설정은 사용자가 직접 한다
+
+## 5. 처음 쓸 때 (설치·안내)
+
+- 사용자가 설치를 시켰거나 `ai.cmd status` 에 쓸 수 있는 팀원이 하나도 없으면, **말없이 설치하지 않는다.** README 「For AI agents · AI 에이전트라면」의 안내 문구와 「팀원마다 필요한 것」 표를 사용자에게 보여 주고, 쓸지와 어느 팀원을 켤지 정하게 한다
+- 허락받은 것만 설치한다. 로그인은 사용자가 직접 한다. 요금제·크레딧 구매, 결제수단 등록, API 키, 자동 승인 옵션은 쓰지 않는다
+- 기밀 낱말(거래처·인명·코드명)을 사용자에게 물어 `secret_words.txt` 에 적는다
+- 끝나면 켠 팀원마다 `ai.cmd test <팀원>` 으로 시험하고 결과를 한두 문장으로 알린다

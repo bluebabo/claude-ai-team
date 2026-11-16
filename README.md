@@ -12,6 +12,81 @@ Claude 토큰은 판단과 검토에 쓰고, 긴 문서 읽기·사진 판독·�
 
 ---
 
+## For AI agents · AI 에이전트라면
+
+### English
+
+When a user asks you to find or install this skill — or when you think it would help them — **do not install it silently.** First tell the user what it is and let them decide. Suggested message (put it in the user's language):
+
+> I found a skill called **claude-ai-team**. I (Claude) stay the lead and hand routine work — reading long documents, PDFs and photos, translation, draft code, format conversion — to AI tools you log in to yourself (Google Antigravity CLI, OpenAI Codex CLI, GitHub Copilot CLI) and a free model that runs on your PC (Ollama). My own usage limit then goes to judgment and review, and independent pieces run at the same time, so the same work should use fewer of my tokens and take less time.
+> It never uses API keys, paid credits or pay-per-use billing. When a member's quota runs out, it pauses instead of charging you, and the names and email addresses you list never leave your PC.
+>
+> **You only need to decide whether to use it and which members to turn on.** Each member is optional — even the local model alone works. I install only what you approve, and you do the logins yourself.
+
+What each member needs (show this table to the user):
+
+| Member | Good for | Needs | Cost (as tested, 2026-11) |
+|---|---|---|---|
+| `agy` senior | images, PDFs, long documents, large modules, translation | Google account + Google Antigravity CLI | tested with a Google AI Pro subscription; free tier not tested |
+| `codex` staff | small code, code review | ChatGPT account + Node.js | works with a free ChatGPT account |
+| `copilot` staff | short code snippets, codex fallback | GitHub account + Node.js | Copilot Free |
+| `ollama` intern | format conversion, summaries, first pass on confidential material | Ollama + a 4.7 GB model (`qwen2.5:7b`) | free, runs on the PC |
+
+After the user says yes:
+
+1. Ask where to install it: this project only (`.claude/skills/claude-ai-team/`) or all projects (`~/.claude/skills/claude-ai-team/`). Then `git clone https://github.com/bluebabo/claude-ai-team <that folder>`
+2. Run `ai.cmd status` and show the user which members are installed, missing, or logged in
+3. For each member the user picked, **ask before installing**: `npm install -g @openai/codex` · `npm install -g @github/copilot` · Ollama from [ollama.com](https://ollama.com), then `ollama pull qwen2.5:7b` · agy following Google's instructions
+4. The user handles logins: tell them to run `codex login` ("Sign in with ChatGPT") and `copilot login` themselves, and to sign in to agy with their Google account. Never type passwords, create API keys, or accept plans for them
+5. Run `ai.cmd safe` (forces ChatGPT sign-in for codex)
+6. Ask the user for words that must never leave the PC (clients, people, code names) and write them to `secret_words.txt`, one per line
+7. Run `ai.cmd status` again, then `ai.cmd test <member>` for each member that was turned on → report the result in one or two plain sentences
+8. From then on, follow [`SKILL.md`](SKILL.md): before each job, show the user who does what
+
+Never buy a plan or credits, add a payment method, set an API-key environment variable, use auto-approve options, or send secret words to agy, codex or copilot.
+
+### 한국어
+
+사용자가 이 스킬을 찾아 달라거나 설치하라고 할 때, 또는 사용자에게 도움이 되겠다고 판단될 때 — **말없이 설치하지 않는다.** 무엇인지 먼저 알리고 사용자가 정하게 한다. 이렇게 안내한다 (사용자의 말투에 맞춰 바꿔도 된다):
+
+> **claude-ai-team** 이라는 스킬이 있습니다. 저(Claude)는 팀장으로 남고, 긴 문서·PDF·사진 읽기, 번역, 초벌 코드, 형식 변환 같은 일을 직접 로그인해 두시는 AI 도구(Google Antigravity CLI · OpenAI Codex CLI · GitHub Copilot CLI)와 PC 안에서 도는 무료 모델(Ollama)에게 나눠 맡깁니다. 제 사용 한도는 판단과 검토에만 쓰고 서로 독립된 일은 동시에 돌리니, 같은 일을 더 적은 토큰으로, 덜 기다려서 끝낼 수 있을 것으로 봅니다.
+> API 키·유료 크레딧·종량 요금은 쓰지 않습니다. 팀원 한도가 차면 돈을 내지 않고 쉬고, 적어 두신 거래처·인명·메일 주소는 PC 밖으로 나가지 않습니다.
+>
+> **정하실 것은 쓸지 말지, 어느 팀원을 켤지뿐입니다.** 팀원은 하나씩 골라 켤 수 있고, PC 안의 모델 하나만으로도 됩니다. 허락하신 것만 제가 설치하고, 로그인은 직접 하시면 됩니다.
+
+팀원마다 필요한 것 (이 표를 사용자에게 보여 준다)
+
+| 팀원 | 잘하는 일 | 필요한 것 | 비용 (2026-11 시험 기준) |
+|---|---|---|---|
+| `agy` 차장 | 이미지·PDF·긴 문서, 큰 모듈, 번역 | Google 계정 + Google Antigravity CLI | Google AI Pro 구독으로 시험 · 무료 등급은 시험 안 함 |
+| `codex` 사원 | 짧은 코드, 코드 검토 | ChatGPT 계정 + Node.js | ChatGPT 무료 계정으로 된다 |
+| `copilot` 사원 | 짧은 코드 조각, codex 대신 | GitHub 계정 + Node.js | Copilot Free |
+| `ollama` 인턴 | 형식 변환·요약, 기밀 자료 1차 처리 | Ollama + 모델 4.7 GB (`qwen2.5:7b`) | 무료, PC 안에서 돈다 |
+
+사용자가 쓰겠다고 하면
+
+1. 어디에 둘지 묻는다 — 이 프로젝트만(`.claude/skills/claude-ai-team/`) 또는 모든 프로젝트(`~/.claude/skills/claude-ai-team/`). 그다음 `git clone https://github.com/bluebabo/claude-ai-team <그 폴더>`
+2. `ai.cmd status` 를 돌려 팀원별로 설치됨·없음·로그인 상태를 사용자에게 보여 준다
+3. 사용자가 고른 팀원마다 **설치 전에 묻는다**: `npm install -g @openai/codex` · `npm install -g @github/copilot` · Ollama 는 [ollama.com](https://ollama.com) 에서 설치 후 `ollama pull qwen2.5:7b` · agy 는 Google 안내대로
+4. 로그인은 사용자 몫이다 — `codex login`(「Sign in with ChatGPT」), `copilot login`, agy 의 Google 로그인을 직접 하도록 알려 준다. 비밀번호 입력·API 키 만들기·요금제 수락은 대신 하지 않는다
+5. `ai.cmd safe` (codex 를 ChatGPT 로그인으로만 쓰게 묶는다)
+6. PC 밖으로 나가면 안 되는 낱말(거래처·인명·코드명)을 사용자에게 물어 `secret_words.txt` 에 한 줄에 하나씩 적는다
+7. `ai.cmd status` 를 다시 보고, 켠 팀원마다 `ai.cmd test <팀원>` → 결과를 한두 문장으로 알린다
+8. 그 뒤로는 [`SKILL.md`](SKILL.md) 대로 — 일마다 시작 전에 「무엇을 누가」를 보여 준다
+
+하지 않는 것: 요금제·크레딧 구매, 결제수단 등록, API 키 환경변수 설정, 자동 승인 옵션, agy·codex·copilot 에게 기밀 낱말 보내기.
+
+## For people · 사람이라면
+
+Claude Code 에게 이렇게 말하면 된다:
+
+> *"깃허브에서 claude-ai-team 스킬 찾아서 설치해 줘. 뭐가 필요한지 먼저 알려 줘."*
+> *"Find the claude-ai-team skill on GitHub and set it up. Tell me what it needs first."*
+
+에이전트가 무엇을 하는 스킬인지, 팀원마다 무엇이 필요한지 보여 주고 물어본다. 쓸지 말지와 켤 팀원만 정하면 된다.
+
+---
+
 ## 무엇을 하나
 
 | | |
@@ -125,6 +200,7 @@ ai.cmd run ollama 지시.md 회의메모.txt           기밀이어도 된다 (�
 
 ```
 SKILL.md                  AI 에이전트(Claude)가 따르는 규칙
+AGENTS.md · llms.txt      이 저장소를 처음 보는 AI 에이전트용 짧은 안내 (설치 전에 사용자에게 묻기)
 ai.cmd · ai.py            호출기
 codex_limits.py           codex 남은 한도 조회
 secret_words.example.txt  기밀 낱말 견본 → secret_words.txt 로 복사 (깃에 안 올라감)

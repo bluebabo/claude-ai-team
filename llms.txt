@@ -1,0 +1,16 @@
+# claude-ai-team
+
+> Agent Skill (SKILL.md, agentskills.io format) for Claude Code on Windows. Claude stays the lead and delegates routine work — long documents, PDFs and photos, translation, draft code, format conversion — to AI CLIs the user logs in to (Google Antigravity CLI `agy`, OpenAI Codex CLI `codex`, GitHub Copilot CLI `copilot`) and a local Ollama model, through one dispatcher `ai.cmd`. No API keys, paid credits or pay-per-use billing.
+
+Facts for agents:
+- Do not install silently: tell the user what it does; they decide whether to use it and which members to turn on (each is optional). Suggested message and requirement table: README.md, section "For AI agents"
+- Requirements: Windows 10/11, Python 3.8+. Node.js for codex and copilot. Ollama and the 4.7 GB `qwen2.5:7b` model for the intern. A Google account for agy (tested with Google AI Pro; free tier not tested)
+- Setup: `git clone https://github.com/bluebabo/claude-ai-team .claude/skills/claude-ai-team` → `ai.cmd status` → install the members the user approved → have the user log in → `ai.cmd safe` → write `secret_words.txt` → `ai.cmd test <member>`
+- Use: `ai.cmd run <agy|codex|copilot|ollama> task.md [attachments…] [--min N] [--model basic|light|deep]` → result in `_work/<time>_<member>/out.md`. Members are read-only; the lead saves what it adopts
+- Guards: strips API-key environment variables, blocks e-mail addresses and words in `secret_words.txt` from external members, and marks a member as resting for 5 hours on quota errors (no retry loop, no credits)
+
+## Docs
+
+- [SKILL.md](SKILL.md): rules for the lead agent (read first after install)
+- [README.md](README.md): overview, setup, cost guards, tested versions, known issues (Korean + English)
+- [AGENTS.md](AGENTS.md): short rules for agents working with this repository
