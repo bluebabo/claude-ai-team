@@ -1,11 +1,11 @@
 ---
 name: claude-ai-team
-description: Run Claude Code as a team lead that hands work to AI coding CLIs you already log in to — Google Antigravity CLI (agy), OpenAI Codex CLI, GitHub Copilot CLI — and a local Ollama model, with no API keys, credits or pay-per-use billing. Claude splits the job, picks the right member (images, PDFs and long documents to agy; small code to codex or copilot; mechanical or confidential work to the local model), sends a self-contained task through one dispatcher (ai.cmd), then reviews the result and decides. E-mail addresses and your own secret words are blocked from leaving the PC, and a used-up quota makes the member rest instead of paying. Windows. Use when the user says to use the AI team or staff, delegate to Gemini, Codex, Copilot or Ollama, save Claude tokens, split work among AI agents, or install or set up this skill. 한국어 — AI 팀원(차장·사원·인턴) 부리기, 업무분장, 제미나이·코덱스·코파일럿·올라마에게 일 맡기기, 토큰 아끼기.
+description: Run Claude Code as a team lead that hands work to AI coding CLIs you already log in to — Google Antigravity CLI (agy), OpenAI Codex CLI, GitHub Copilot CLI — and a local Ollama model, with no API keys, credits or pay-per-use billing. Claude splits the job, picks the right member (images, PDFs and long documents to agy; small code to codex or copilot; mechanical or confidential work to the local model), sends a self-contained task through one dispatcher (ai.cmd), then reviews the result and decides. E-mail addresses and your own secret words are blocked from leaving the PC, and a used-up quota makes the member rest instead of paying. Windows. Use when the user says to use the AI team or staff, delegate to Gemini, Codex, Copilot or Ollama, save Claude tokens, split work among AI agents, install or set up this skill, or make it always on. 한국어 — AI 팀원(차장·사원·인턴) 부리기, 업무분장, 제미나이·코덱스·코파일럿·올라마에게 일 맡기기, 토큰 아끼기.
 license: MIT
 compatibility: Windows 10/11 and Python 3.8+. Every member is optional — install and log in only the ones you use (agy with a Google account, codex with "Sign in with ChatGPT", copilot with a GitHub account, Ollama locally).
 metadata:
   author: claude-ai-team
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Claude AI 팀 — 팀장(Claude) 아래 차장·사원·인턴
@@ -78,4 +78,7 @@ metadata:
 - 사용자가 설치를 시켰거나 `ai.cmd status` 에 쓸 수 있는 팀원이 하나도 없으면, **말없이 설치하지 않는다.** README 「For AI agents · AI 에이전트라면」의 안내 문구와 「팀원마다 필요한 것」 표를 사용자에게 보여 주고, 쓸지와 어느 팀원을 켤지 정하게 한다
 - 허락받은 것만 설치한다. 로그인은 사용자가 직접 한다. 요금제·크레딧 구매, 결제수단 등록, API 키, 자동 승인 옵션은 쓰지 않는다
 - 기밀 낱말(거래처·인명·코드명)을 사용자에게 물어 `secret_words.txt` 에 적는다
+- **늘 쓸지, 부를 때만 쓸지 묻는다.** 스킬은 맞다고 판단할 때만 읽히므로, 늘 쓰려면 사용자가 고른 `CLAUDE.md`(이 프로젝트 `./CLAUDE.md` · 모든 프로젝트 `~/.claude/CLAUDE.md`)에 아래 한 줄을 넣는다. 넣기 전에 그 줄과 파일을 보여 준다. 사용자가 나중에 「늘 쓰게 해 줘」라고 해도 같다
+  - 한국어: `아주 단순한 질문이 아니면 claude-ai-team 스킬로 업무분장(무엇을 누가 — 팀원·로컬 도구·직접)부터 보여 주고 나눠 맡긴다.`
+  - English: `Unless the request is trivial, use the claude-ai-team skill: first show who does what (team members, local tools, or yourself), then delegate.`
 - 끝나면 켠 팀원마다 `ai.cmd test <팀원>` 으로 시험하고 결과를 한두 문장으로 알린다

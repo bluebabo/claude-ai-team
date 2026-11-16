@@ -5,7 +5,7 @@
 Facts for agents:
 - Do not install silently: tell the user what it does; they decide whether to use it and which members to turn on (each is optional). Suggested message and requirement table: README.md, section "For AI agents"
 - Requirements: Windows 10/11, Python 3.8+. Node.js for codex and copilot. Ollama and the 4.7 GB `qwen2.5:7b` model for the intern. A Google account for agy (tested with Google AI Pro; free tier not tested)
-- Setup: `git clone https://github.com/bluebabo/claude-ai-team .claude/skills/claude-ai-team` → `ai.cmd status` → install the members the user approved → have the user log in → `ai.cmd safe` → write `secret_words.txt` → `ai.cmd test <member>`
+- Setup: `git clone https://github.com/bluebabo/claude-ai-team .claude/skills/claude-ai-team` → `ai.cmd status` → install the members the user approved → have the user log in → `ai.cmd safe` → write `secret_words.txt` → `ai.cmd test <member>` → ask whether to use it on every task; if yes, add the one-line rule from README (For AI agents, step 8) to the `CLAUDE.md` the user chooses
 - Use: `ai.cmd run <agy|codex|copilot|ollama> task.md [attachments…] [--min N] [--model basic|light|deep]` → result in `_work/<time>_<member>/out.md`. Members are read-only; the lead saves what it adopts
 - Guards: strips API-key environment variables, blocks e-mail addresses and words in `secret_words.txt` from external members, and marks a member as resting for 5 hours on quota errors (no retry loop, no credits)
 

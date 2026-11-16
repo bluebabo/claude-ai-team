@@ -21,7 +21,7 @@ When a user asks you to find or install this skill — or when you think it woul
 > I found a skill called **claude-ai-team**. I (Claude) stay the lead and hand routine work — reading long documents, PDFs and photos, translation, draft code, format conversion — to AI tools you log in to yourself (Google Antigravity CLI, OpenAI Codex CLI, GitHub Copilot CLI) and a free model that runs on your PC (Ollama). My own usage limit then goes to judgment and review, and independent pieces run at the same time, so the same work should use fewer of my tokens and take less time.
 > It never uses API keys, paid credits or pay-per-use billing. When a member's quota runs out, it pauses instead of charging you, and the names and email addresses you list never leave your PC.
 >
-> **You only need to decide whether to use it and which members to turn on.** Each member is optional — even the local model alone works. I install only what you approve, and you do the logins yourself.
+> **You only need to decide three things: whether to use it, which members to turn on, and whether I should use it on every task or only when you ask.** Each member is optional — even the local model alone works. I install only what you approve, and you do the logins yourself.
 
 What each member needs (show this table to the user):
 
@@ -41,7 +41,12 @@ After the user says yes:
 5. Run `ai.cmd safe` (forces ChatGPT sign-in for codex)
 6. Ask the user for words that must never leave the PC (clients, people, code names) and write them to `secret_words.txt`, one per line
 7. Run `ai.cmd status` again, then `ai.cmd test <member>` for each member that was turned on → report the result in one or two plain sentences
-8. From then on, follow [`SKILL.md`](SKILL.md): before each job, show the user who does what
+8. Ask whether the team should work **on every task** or only when asked. A skill is read only when Claude judges it relevant, so for every task, add this line to `CLAUDE.md` — `./CLAUDE.md` for this project or `~/.claude/CLAUDE.md` for all projects, as the user chooses. Show the user the line and the file before writing:
+   ```
+   Unless the request is trivial, use the claude-ai-team skill: first show who does what (team members, local tools, or yourself), then delegate.
+   ```
+   If the user prefers on demand, tell them to say "use the team" or type `/claude-ai-team`
+9. From then on, follow [`SKILL.md`](SKILL.md): before each job, show the user who does what
 
 Never buy a plan or credits, add a payment method, set an API-key environment variable, use auto-approve options, or send secret words to agy, codex or copilot.
 
@@ -52,7 +57,7 @@ Never buy a plan or credits, add a payment method, set an API-key environment va
 > **claude-ai-team** 이라는 스킬이 있습니다. 저(Claude)는 팀장으로 남고, 긴 문서·PDF·사진 읽기, 번역, 초벌 코드, 형식 변환 같은 일을 직접 로그인해 두시는 AI 도구(Google Antigravity CLI · OpenAI Codex CLI · GitHub Copilot CLI)와 PC 안에서 도는 무료 모델(Ollama)에게 나눠 맡깁니다. 제 사용 한도는 판단과 검토에만 쓰고 서로 독립된 일은 동시에 돌리니, 같은 일을 더 적은 토큰으로, 덜 기다려서 끝낼 수 있을 것으로 봅니다.
 > API 키·유료 크레딧·종량 요금은 쓰지 않습니다. 팀원 한도가 차면 돈을 내지 않고 쉬고, 적어 두신 거래처·인명·메일 주소는 PC 밖으로 나가지 않습니다.
 >
-> **정하실 것은 쓸지 말지, 어느 팀원을 켤지뿐입니다.** 팀원은 하나씩 골라 켤 수 있고, PC 안의 모델 하나만으로도 됩니다. 허락하신 것만 제가 설치하고, 로그인은 직접 하시면 됩니다.
+> **정하실 것은 세 가지뿐입니다 — 쓸지 말지, 어느 팀원을 켤지, 모든 일에 늘 쓸지 부르실 때만 쓸지.** 팀원은 하나씩 골라 켤 수 있고, PC 안의 모델 하나만으로도 됩니다. 허락하신 것만 제가 설치하고, 로그인은 직접 하시면 됩니다.
 
 팀원마다 필요한 것 (이 표를 사용자에게 보여 준다)
 
@@ -72,7 +77,12 @@ Never buy a plan or credits, add a payment method, set an API-key environment va
 5. `ai.cmd safe` (codex 를 ChatGPT 로그인으로만 쓰게 묶는다)
 6. PC 밖으로 나가면 안 되는 낱말(거래처·인명·코드명)을 사용자에게 물어 `secret_words.txt` 에 한 줄에 하나씩 적는다
 7. `ai.cmd status` 를 다시 보고, 켠 팀원마다 `ai.cmd test <팀원>` → 결과를 한두 문장으로 알린다
-8. 그 뒤로는 [`SKILL.md`](SKILL.md) 대로 — 일마다 시작 전에 「무엇을 누가」를 보여 준다
+8. 늘 쓸지, 부를 때만 쓸지 묻는다. 스킬은 Claude 가 맞다고 판단할 때만 읽히므로, 늘 쓰려면 `CLAUDE.md` 에 아래 한 줄을 넣는다 — 이 프로젝트만이면 `./CLAUDE.md`, 모든 프로젝트면 `~/.claude/CLAUDE.md` 중 사용자가 고른 곳. 넣기 전에 그 줄과 파일을 보여 준다
+   ```
+   아주 단순한 질문이 아니면 claude-ai-team 스킬로 업무분장(무엇을 누가 — 팀원·로컬 도구·직접)부터 보여 주고 나눠 맡긴다.
+   ```
+   부를 때만 쓰겠다면 「팀원 활용해」라고 말하거나 `/claude-ai-team` 을 치면 된다고 알려 준다
+9. 그 뒤로는 [`SKILL.md`](SKILL.md) 대로 — 일마다 시작 전에 「무엇을 누가」를 보여 준다
 
 하지 않는 것: 요금제·크레딧 구매, 결제수단 등록, API 키 환경변수 설정, 자동 승인 옵션, agy·codex·copilot 에게 기밀 낱말 보내기.
 
@@ -83,7 +93,12 @@ Claude Code 에게 이렇게 말하면 된다:
 > *"깃허브에서 claude-ai-team 스킬 찾아서 설치해 줘. 뭐가 필요한지 먼저 알려 줘."*
 > *"Find the claude-ai-team skill on GitHub and set it up. Tell me what it needs first."*
 
-에이전트가 무엇을 하는 스킬인지, 팀원마다 무엇이 필요한지 보여 주고 물어본다. 쓸지 말지와 켤 팀원만 정하면 된다.
+에이전트가 무엇을 하는 스킬인지, 팀원마다 무엇이 필요한지 보여 주고 물어본다. 쓸지 말지, 켤 팀원, 늘 쓸지만 정하면 된다.
+
+나중에 모든 일에 늘 쓰게 하려면 / To turn it on for every task later:
+
+> *"claude-ai-team 스킬 늘 쓰게 해 줘."*
+> *"Use the claude-ai-team skill on every task."*
 
 ---
 
@@ -128,10 +143,14 @@ Claude Code 에게 이렇게 말하면 된다:
 4. `ai.cmd safe` — codex 설정에 `forced_login_method = "chatgpt"` 를 넣어 API 키 로그인을 막는다
 5. `copy secret_words.example.txt secret_words.txt` → 거래처·인명·코드명을 한 줄에 하나씩
 6. `ai.cmd status` → 경고 줄이 없으면 `ai.cmd test ollama` 처럼 한 줄 시험
+7. (선택) **늘 쓰기** — 스킬은 Claude 가 맞다고 판단할 때만 쓰인다. 모든 일에 업무분장부터 하게 하려면 `CLAUDE.md`(이 프로젝트 `./CLAUDE.md` 또는 모든 프로젝트 `~/.claude/CLAUDE.md`)에 한 줄을 넣는다
+   ```
+   아주 단순한 질문이 아니면 claude-ai-team 스킬로 업무분장(무엇을 누가 — 팀원·로컬 도구·직접)부터 보여 주고 나눠 맡긴다.
+   ```
 
 ## 쓰는 법
 
-Claude Code 에게 「팀원 활용해」「이건 차장에게 맡겨」처럼 말하면 [`SKILL.md`](SKILL.md) 대로 업무분장을 보여 주고 나눠 맡긴다. 직접 부를 때:
+Claude Code 에게 「팀원 활용해」「이건 차장에게 맡겨」처럼 말하면 [`SKILL.md`](SKILL.md) 대로 업무분장을 보여 주고 나눠 맡긴다. 설치 7(늘 쓰기)을 해 두면 말하지 않아도 일마다 업무분장부터 하고, 한 번만 확실히 부르려면 `/claude-ai-team` 을 친다. 호출기를 직접 부를 때:
 
 ```
 ai.cmd status                                  설치·로그인 방식·쉬는 팀원·기밀 낱말 수·요금 설정 점검
@@ -207,6 +226,11 @@ secret_words.example.txt  기밀 낱말 견본 → secret_words.txt 로 복사 (
 _work/                    결과·로그·한도 상태 (자동 생성, 깃에 안 올라감)
 ```
 
+## 바뀐 것 · Changelog
+
+- **1.1.0** (2026-11-16) — 「늘 쓰기」 단계: 설치할 때 늘 쓸지 묻고, 원하면 `CLAUDE.md` 에 한 줄을 넣는다 · Always-on step: one line in `CLAUDE.md` so every task starts with the division of work
+- **1.0.0** (2026-11-16) — 첫 공개 · First release
+
 ## 라이선스
 
 MIT. 각 CLI 와 모델은 그 제공사의 약관을 따른다. 이 도구는 사용자가 로그인한 CLI 를 그대로 부를 뿐, 한도를 늘리거나 우회하지 않는다.
@@ -258,6 +282,10 @@ MIT. 각 CLI 와 모델은 그 제공사의 약관을 따른다. 이 도구는 �
 4. `ai.cmd safe` — sets `forced_login_method = "chatgpt"` in codex config to block API key login
 5. `copy secret_words.example.txt secret_words.txt` — add client names, people, or code names one per line
 6. `ai.cmd status` — if no warnings appear, run a one-line test such as `ai.cmd test ollama`
+7. (Optional) **Always on** — a skill is used only when Claude judges it relevant. To start every task with the division of work, add one line to `CLAUDE.md` (`./CLAUDE.md` for this project or `~/.claude/CLAUDE.md` for all projects):
+   ```
+   Unless the request is trivial, use the claude-ai-team skill: first show who does what (team members, local tools, or yourself), then delegate.
+   ```
 
 ### Usage
 
