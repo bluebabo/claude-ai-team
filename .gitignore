@@ -1,0 +1,10 @@
+# 호출 결과·로그·한도 상태 (PC 마다 다르고 지시문 원문이 들어 있다)
+_work/
+
+# 내 기밀 낱말 목록
+secret_words.txt
+
+__pycache__/
+*.pyc
+Thumbs.db
+.DS_Store

@@ -1,0 +1,3 @@
+* text=auto
+# cmd.exe 는 LF 줄끝에서 goto 라벨을 놓칠 수 있다
+*.cmd text eol=crlf
