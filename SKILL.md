@@ -5,7 +5,7 @@ license: MIT
 compatibility: Windows 10/11 and Python 3.8+. Every member is optional — install and log in only the ones you use (agy with a Google account, codex with "Sign in with ChatGPT", copilot with a GitHub account, Ollama locally).
 metadata:
   author: claude-ai-team
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Claude AI 팀 — 팀장(Claude) 아래 차장·사원·인턴

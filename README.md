@@ -36,7 +36,7 @@ After the user says yes:
 
 1. Ask where to install it: this project only (`.claude/skills/claude-ai-team/`) or all projects (`~/.claude/skills/claude-ai-team/`). Then `git clone https://github.com/bluebabo/claude-ai-team <that folder>`
 2. Run `ai.cmd status` and show the user which members are installed, missing, or logged in
-3. For each member the user picked, **ask before installing**: `npm install -g @openai/codex` · `npm install -g @github/copilot` · Ollama from [ollama.com](https://ollama.com), then `ollama pull qwen2.5:7b` · agy following Google's instructions
+3. For each member the user picked, **ask before installing**: `npm install -g @openai/codex` · `npm install -g @github/copilot` · Ollama from [ollama.com](https://ollama.com), then `ollama pull qwen2.5:7b` · agy following Google's instructions. In PowerShell, if `npm.ps1` is blocked by the execution policy, use `npm.cmd` (and `codex.cmd`, `copilot.cmd` for login); do not change the policy
 4. The user handles logins: tell them to run `codex login` ("Sign in with ChatGPT") and `copilot login` themselves, and to sign in to agy with their Google account. Never type passwords, create API keys, or accept plans for them
 5. Run `ai.cmd safe` (forces ChatGPT sign-in for codex)
 6. Ask the user for words that must never leave the PC (clients, people, code names) and write them to `secret_words.txt`, one per line
@@ -72,7 +72,7 @@ Never buy a plan or credits, add a payment method, set an API-key environment va
 
 1. 어디에 둘지 묻는다 — 이 프로젝트만(`.claude/skills/claude-ai-team/`) 또는 모든 프로젝트(`~/.claude/skills/claude-ai-team/`). 그다음 `git clone https://github.com/bluebabo/claude-ai-team <그 폴더>`
 2. `ai.cmd status` 를 돌려 팀원별로 설치됨·없음·로그인 상태를 사용자에게 보여 준다
-3. 사용자가 고른 팀원마다 **설치 전에 묻는다**: `npm install -g @openai/codex` · `npm install -g @github/copilot` · Ollama 는 [ollama.com](https://ollama.com) 에서 설치 후 `ollama pull qwen2.5:7b` · agy 는 Google 안내대로
+3. 사용자가 고른 팀원마다 **설치 전에 묻는다**: `npm install -g @openai/codex` · `npm install -g @github/copilot` · Ollama 는 [ollama.com](https://ollama.com) 에서 설치 후 `ollama pull qwen2.5:7b` · agy 는 Google 안내대로. PowerShell 에서 실행 정책 때문에 `npm.ps1` 이 막히면 `npm.cmd` 로 부른다(로그인도 `codex.cmd`·`copilot.cmd`). 실행 정책은 바꾸지 않는다
 4. 로그인은 사용자 몫이다 — `codex login`(「Sign in with ChatGPT」), `copilot login`, agy 의 Google 로그인을 직접 하도록 알려 준다. 비밀번호 입력·API 키 만들기·요금제 수락은 대신 하지 않는다
 5. `ai.cmd safe` (codex 를 ChatGPT 로그인으로만 쓰게 묶는다)
 6. PC 밖으로 나가면 안 되는 낱말(거래처·인명·코드명)을 사용자에게 물어 `secret_words.txt` 에 한 줄에 하나씩 적는다
@@ -139,6 +139,8 @@ Claude Code 에게 이렇게 말하면 된다:
    | copilot | `npm install -g @github/copilot` | `copilot login` (GitHub 계정). 「Access denied by policy」가 나오면 GitHub 의 Copilot 설정에서 Copilot CLI 가 Enabled 인지 본다 |
    | agy | Google Antigravity CLI 안내대로 (`%LOCALAPPDATA%\agy\bin` 에 설치된 판으로 시험) | Google 계정 (방법은 Antigravity 안내) |
    | ollama | [ollama.com](https://ollama.com) 에서 설치 → `ollama pull qwen2.5:7b` | 필요 없음 (ollama 계정 로그인 안 함) |
+
+   PowerShell 에서 「`npm.ps1` 파일을 로드할 수 없습니다」(영문 「running scripts is disabled on this system」)가 나오면 `npm.cmd`·`codex.cmd`·`copilot.cmd` 로 부른다 — 예: `npm.cmd install -g @openai/codex`, `codex.cmd login`. 실행 정책은 바꾸지 않는다
 
 4. `ai.cmd safe` — codex 설정에 `forced_login_method = "chatgpt"` 를 넣어 API 키 로그인을 막는다
 5. `copy secret_words.example.txt secret_words.txt` → 거래처·인명·코드명을 한 줄에 하나씩
@@ -228,6 +230,7 @@ _work/                    결과·로그·한도 상태 (자동 생성, 깃에 �
 
 ## 바뀐 것 · Changelog
 
+- **1.1.1** (2026-11-21) — PowerShell 실행 정책으로 `npm.ps1` 이 막힐 때 `npm.cmd`·`codex.cmd`·`copilot.cmd` 로 부르는 안내 · Documented the `.cmd` workaround when PowerShell's execution policy blocks `npm.ps1` ([#1](https://github.com/bluebabo/claude-ai-team/issues/1))
 - **1.1.0** (2026-11-16) — 「늘 쓰기」 단계: 설치할 때 늘 쓸지 묻고, 원하면 `CLAUDE.md` 에 한 줄을 넣는다 · Always-on step: one line in `CLAUDE.md` so every task starts with the division of work
 - **1.0.0** (2026-11-16) — 첫 공개 · First release
 
@@ -278,6 +281,8 @@ MIT. 각 CLI 와 모델은 그 제공사의 약관을 따른다. 이 도구는 �
    | copilot | `npm install -g @github/copilot` | `copilot login` (GitHub account). On "Access denied by policy", check that Copilot CLI is Enabled in GitHub Copilot settings |
    | agy | Follow Google Antigravity CLI instructions (tested with `%LOCALAPPDATA%\agy\bin`) | Google account (see Antigravity instructions) |
    | ollama | Install from [ollama.com](https://ollama.com) → `ollama pull qwen2.5:7b` | None (do not log in to an ollama account) |
+
+   In PowerShell, if `npm.ps1` fails with "running scripts is disabled on this system", call `npm.cmd`, `codex.cmd` and `copilot.cmd` instead — e.g. `npm.cmd install -g @openai/codex`, `codex.cmd login`. Do not change the execution policy.
 
 4. `ai.cmd safe` — sets `forced_login_method = "chatgpt"` in codex config to block API key login
 5. `copy secret_words.example.txt secret_words.txt` — add client names, people, or code names one per line
